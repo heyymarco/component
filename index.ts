@@ -29,4 +29,20 @@ export default class Control extends Element {
             this.filter(":disabled").prop("disabled", false).trigger("enabled");
         }
     }
+
+    /**
+     * get the state of enability of current control.
+     * @returns true indicates the current control is enabled, or false indicates the current control is not enabled (disabled).
+     */
+    get enabled() : boolean {
+        return !this.disabled;
+    }
+
+    /**
+     * set the state of enability of current control.
+     * @param enabled : set true to enable this element, or false to not enable (disable) it.
+     */
+    set enabled(enabled : boolean) {
+        this.disabled = !enabled;
+    }
 }
