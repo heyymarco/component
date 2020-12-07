@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/control",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a base class providing a basic manipulation of controllable HTML element such as <button>, <input>, and <textarea>",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/heyymarco/control#readme",
   "dependencies": {
-    "@heymarco/element": "^1.0.0"
+    "@heymarco/element": "^1.0.3"
   },
   "devDependencies": {}
 }
