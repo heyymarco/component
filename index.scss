@@ -1,0 +1,346 @@
+// A base class of control base.
+
+
+
+// development:
+@use "node_modules/@heymarco/sass-class-template/index" as *;
+@use "node_modules/@heymarco/sass-selector/index" as selector;
+@use "node_modules/@heymarco/element/index" as base;
+@use "node_modules/@heymarco/border/index" as border;
+@use "node_modules/@heymarco/spacer/index" as spacer;
+@use "node_modules/@heymarco/strip-out/index" as strip-out;
+@use "node_modules/@heymarco/typography/index" as typo;
+@use "node_modules/@heymarco/colors/index" as color;
+@use "node_modules/@heymarco/sass-string/index" as string;
+
+// production:
+// @use "../../../node_modules/@heymarco/sass-class-template/index" as *;
+// @use "../../../node_modules/@heymarco/sass-selector/index" as selector;
+// @use "../../../node_modules/@heymarco/element/index" as base;
+// @use "../../../node_modules/@heymarco/border/index" as border;
+// @use "../../../node_modules/@heymarco/spacer/index" as spacer;
+// @use "../../../node_modules/@heymarco/strip-out/index" as strip-out;
+// @use "../../../node_modules/@heymarco/typography/index" as typo;
+// @use "../../../node_modules/@heymarco/colors/index" as color;
+// @use "../../../node_modules/@heymarco/sass-string/index" as string;
+
+
+
+@use "sass:meta" as meta;
+
+
+
+$alias              : ".control"                            !default;
+$class              : ""                                    !default;
+$var-root           : ":root"                               !default;
+$var-prefix         : "ctrl"                                !default;
+$var-prefix-base    : ""                                    !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$anim-prefix: part-combine($var-prefix, "anim-");
+
+$backg              : var(#{base.$cssvar}backg)                 !default;
+$backg-gradient     : var(#{base.$cssvar}backg-gradient)        !default;
+$color              : var(#{base.$cssvar}color)                 !default;
+
+$font-size          : var(#{base.$cssvar}font-size)             !default;
+$font-size-sm       : var(#{base.$cssvar}font-size-sm)          !default;
+$font-size-lg       : var(#{base.$cssvar}font-size-lg)          !default;
+$font-family        : var(#{base.$cssvar}font-family)           !default;
+$font-weight        : var(#{base.$cssvar}font-weight)           !default;
+$font-style         : var(#{base.$cssvar}font-style)            !default;
+$text-decoration    : var(#{base.$cssvar}text-decoration)       !default;
+$lineheight         : var(#{base.$cssvar}lineheight)            !default;
+
+$padding-x          : var(#{base.$cssvar}padding-x)             !default;
+$padding-y          : var(#{base.$cssvar}padding-y)             !default;
+$padding-x-sm       : var(#{base.$cssvar}padding-x-sm)          !default;
+$padding-y-sm       : var(#{base.$cssvar}padding-y-sm)          !default;
+$padding-x-lg       : var(#{base.$cssvar}padding-x-lg)          !default;
+$padding-y-lg       : var(#{base.$cssvar}padding-y-lg)          !default;
+
+$border             : var(#{base.$cssvar}border)                !default;
+$border-radius      : var(#{base.$cssvar}border-radius)         !default;
+$border-radius-sm   : var(#{base.$cssvar}border-radius-sm)      !default;
+$border-radius-lg   : var(#{base.$cssvar}border-radius-lg)      !default;
+
+$filter             : var(#{base.$cssvar}filter)                !default;
+$filter-hover       : var(#{base.$cssvar}filter-hover)          !default;
+$filter-active      : brightness(50%) contrast(150%)            !default;
+$filter-disabled    : grayscale(50%) opacity(50%)               !default;
+
+$anim               : var(#{base.$cssvar}anim)                  !default;
+$anim-hover         : 1000ms ease-out both #{$anim-prefix}hover    !default;
+$anim-leave         : 1000ms ease-out both #{$anim-prefix}leave    !default;
+$anim-active        : 1000ms ease-out both #{$anim-prefix}active   !default;
+$anim-passive       : 1000ms ease-out both #{$anim-prefix}passive  !default;
+$anim-enabled       : 1000ms ease-out both #{$anim-prefix}enabled  !default;
+$anim-disabled      : 1000ms ease-out both #{$anim-prefix}disabled !default;
+
+
+
+@include declare-cssvar($var-root) {
+    #{$cssvar}backg             : $backg;
+    #{$cssvar}backg-gradient    : $backg-gradient;
+    #{$cssvar}color             : $color;
+
+    #{$cssvar}font-size         : $font-size;
+    #{$cssvar}font-size-sm      : $font-size-sm;
+    #{$cssvar}font-size-lg      : $font-size-lg;
+    #{$cssvar}font-family       : $font-family;
+    #{$cssvar}font-weight       : $font-weight;
+    #{$cssvar}font-style        : $font-style;
+    #{$cssvar}text-decoration   : $text-decoration;
+    #{$cssvar}lineheight        : $lineheight;
+
+    #{$cssvar}padding-x         : $padding-x;
+    #{$cssvar}padding-y         : $padding-y;
+    #{$cssvar}padding-x-sm      : $padding-x-sm;
+    #{$cssvar}padding-y-sm      : $padding-y-sm;
+    #{$cssvar}padding-x-lg      : $padding-x-lg;
+    #{$cssvar}padding-y-lg      : $padding-y-lg;
+    
+    #{$cssvar}border            : $border;
+    #{$cssvar}border-radius     : $border-radius;
+    #{$cssvar}border-radius-sm  : $border-radius-sm;
+    #{$cssvar}border-radius-lg  : $border-radius-lg;
+
+    #{$cssvar}filter            : $filter;
+    #{$cssvar}filter-hover      : $filter-hover;
+    #{$cssvar}filter-active     : $filter-active;
+    #{$cssvar}filter-disabled   : $filter-disabled;
+
+    #{$cssvar}anim              : $anim;
+    #{$cssvar}anim-hover        : $anim-hover;
+    #{$cssvar}anim-leave        : $anim-leave;
+    #{$cssvar}anim-active       : $anim-active;
+    #{$cssvar}anim-passive      : $anim-passive;
+    #{$cssvar}anim-enabled      : $anim-enabled;
+    #{$cssvar}anim-disabled     : $anim-disabled;
+
+
+
+    // variant-theme: background, color, border:
+    @each $theme-name, $theme-color in color.$themes {
+        // background:
+        #{$cssvar}backg-#{$theme-name}  : var(#{base.$cssvar}backg-#{$theme-name});
+
+        // color:
+        #{$cssvar}color-#{$theme-name}  : var(#{base.$cssvar}color-#{$theme-name});
+    }
+}
+
+
+
+/* begin: animations */
+@keyframes #{$anim-prefix}hover {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            // var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+}
+
+@keyframes #{$anim-prefix}leave {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            // var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+}
+
+
+
+@keyframes #{$anim-prefix}active {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            // var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+}
+
+@keyframes #{$anim-prefix}passive {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-disabled-enabled)
+            // var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            ;
+    }
+}
+
+
+
+@keyframes #{$anim-prefix}disabled {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            // var(#{$cssvar}filter-disabled-enabled)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            var(#{$cssvar}filter-disabled-enabled)
+            ;
+    }
+}
+
+@keyframes #{$anim-prefix}enabled {
+    0% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            var(#{$cssvar}filter-disabled-enabled)
+            ;
+    }
+
+    100% {
+        filter:
+            var(#{$cssvar}filter)
+            var(#{$cssvar}filter-active-passive)
+            var(#{$cssvar}filter-hover-leave)
+            // var(#{$cssvar}filter-disabled-enabled)
+            ;
+    }
+}
+/* end: animations */
+
+
+
+/* begin: states */
+$_state-active: ":active, .active";
+$_state-passive: ".passive";
+@mixin state-active {
+    @include selector.append(    $_state-active) {
+        @content;
+    }
+}
+@mixin state-passive {
+    @include selector.append-not($_state-active) { @include selector.append($_state-passive) {
+        @content;
+    }}
+}
+/* end: states */
+
+
+
+/* begin: general style */
+@mixin _style($include) {
+    @include strip-out.control;
+
+    @include  base.style($cssvar);
+    
+    
+    
+    /* begin: variant-state: animation */
+    #{$cssvar}filter-hover-leave    : brightness(100%);
+    #{$cssvar}anim-hover-leave      : none;
+    @include base.state-not-disabled {
+        @include base.state-hover { #{$cssvar}filter-hover-leave : var(#{$cssvar}filter-hover);
+                                    #{$cssvar}anim-hover-leave   : var(#{$cssvar}anim-hover);   }
+        @include base.state-leave { #{$cssvar}anim-hover-leave   : var(#{$cssvar}anim-leave);   }
+    }
+
+
+
+    #{$cssvar}filter-active-passive : brightness(100%);
+    #{$cssvar}anim-active-passive   : none;
+    @include base.state-not-disabled {
+        @include state-active  { #{$cssvar}filter-active-passive : var(#{$cssvar}filter-active);
+                                 #{$cssvar}anim-active-passive   : var(#{$cssvar}anim-active);    }
+        @include state-passive { #{$cssvar}anim-active-passive   : var(#{$cssvar}anim-passive);   }
+
+        @include selector.append(".active, .passive") {
+            animation:
+                var(#{$cssvar}anim),
+                var(#{$cssvar}anim-disabled-enabled),
+                var(#{$cssvar}anim-active-passive),     // first: control already pressed
+                var(#{$cssvar}anim-hover-leave);        // then : move cursor toward control
+        }
+    }
+
+
+
+    #{$cssvar}filter-disabled-enabled   : brightness(100%);
+    #{$cssvar}anim-disabled-enabled     : none;
+    @include base.state-disabled { #{$cssvar}filter-disabled-enabled : var(#{$cssvar}filter-disabled);
+                                   #{$cssvar}anim-disabled-enabled   : var(#{$cssvar}anim-disabled);   }
+    @include base.state-enabled  { #{$cssvar}filter-disabled-enabled : var(#{$cssvar}filter-disabled);
+                                   #{$cssvar}anim-disabled-enabled   : var(#{$cssvar}anim-enabled);    }
+    @include base.state-enabled  { @include selector.append(":hover, :focus, :active, .active") {
+        #{$cssvar}filter-disabled-enabled   : brightness(100%);
+    }}
+
+
+
+    animation:
+        var(#{$cssvar}anim),
+        var(#{$cssvar}anim-disabled-enabled),
+        var(#{$cssvar}anim-hover-leave),        // first: move cursor toward control
+        var(#{$cssvar}anim-active-passive);     // then : press control
+    /* end: variant-state: animation */
+}
+@mixin style {
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+// abstract class => no emit class
+@include class($alias, $class, "");

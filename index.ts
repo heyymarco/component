@@ -25,9 +25,9 @@ export default class Control extends Element {
      */
     set disabled(disabled : boolean) {
         if (disabled) {
-            this.filter(":not(:disabled)").prop("disabled", true).trigger("disabled");
+            this.filter(":not(:disabled)")  .prop("disabled", true)   .removeClass("enabled")  .trigger("disabled");
         } else {
-            this.filter(":disabled").prop("disabled", false).trigger("enabled");
+            this.filter(":disabled")        .prop("disabled", false)  .addClass("enabled")     .trigger("enabled");
         }
     }
 
