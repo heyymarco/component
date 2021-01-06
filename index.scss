@@ -143,7 +143,7 @@ $anim-prefix: part-combine($var-prefix, "anim-");
                 calc(var(#{base.$cssvar}backg-#{$theme-name}-s) * 100%),
                 calc(var(#{base.$cssvar}backg-#{$theme-name}-l) * 100%),
                 calc(var(#{base.$cssvar}backg-#{$theme-name}-a) * 100% * 0.5)
-            )
+            );
     }
 }
 
@@ -383,7 +383,7 @@ $_state-blur : ".blur";
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin _style($include, $cssvar: $cssvar) {
     @include strip-out.control;
 
     @include  base.style($cssvar);
@@ -471,8 +471,8 @@ $_state-blur : ".blur";
         var(#{$cssvar}anim-active-passive);     // then : press control
     /* end: variant-state: animation */
 }
-@mixin style {
-    @include _style(true);
+@mixin style($cssvar: $cssvar) {
+    @include _style(true, $cssvar);
 }
 @include alias($alias) {
     @include _style(false);
