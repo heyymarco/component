@@ -300,15 +300,15 @@ $_state-blur : ".blur";
         @keyframes #{$cssvar}anim-focus {
             0% {
                 box-shadow:
-                    var(#{$cssvar}box-shadow)
-                    // var(#{$cssvar}box-shadow-focus-blur),
+                    var(#{$cssvar}box-shadow),
+                    // var(#{$cssvar}box-shadow-focus-blur)
                     ;
             }
         
             100% {
                 box-shadow:
-                    var(#{$cssvar}box-shadow)
-                    var(#{$cssvar}box-shadow-focus-blur),
+                    var(#{$cssvar}box-shadow),
+                    var(#{$cssvar}box-shadow-focus-blur)
                     ;
             }
         }
@@ -316,15 +316,15 @@ $_state-blur : ".blur";
         @keyframes #{$cssvar}anim-blur {
             0% {
                 box-shadow:
-                    var(#{$cssvar}box-shadow)
-                    var(#{$cssvar}box-shadow-focus-blur),
+                    var(#{$cssvar}box-shadow),
+                    var(#{$cssvar}box-shadow-focus-blur)
                     ;
             }
         
             100% {
                 box-shadow:
-                    var(#{$cssvar}box-shadow)
-                    // var(#{$cssvar}box-shadow-focus-blur),
+                    var(#{$cssvar}box-shadow),
+                    // var(#{$cssvar}box-shadow-focus-blur)
                     ;
             }
         }
