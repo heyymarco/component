@@ -11,6 +11,51 @@ export default class Control extends Element {
     }
 
 
+
+    get markBlur() : boolean {
+        return this.is(".blur");
+    }
+    set markBlur(blur : boolean) {
+        this.toggleClass("blur", blur);
+    }
+
+
+    get markPassive() : boolean {
+        return this.is(".passive");
+    }
+    set markPassive(passive : boolean) {
+        this.toggleClass("passive", passive);
+    }
+
+
+
+    get markEnabled() : boolean {
+        return this.is(".enabled");
+    }
+    set markEnabled(enabled : boolean) {
+        this.toggleClass("enabled", enabled);
+    }
+
+    get markDisabled() : boolean {
+        return this.is(".disabled");
+    }
+    set markDisabled(disabled : boolean) {
+        this.toggleClass("disabled", disabled);
+    }
+
+
+
+    clearAnimMarkOuts() {
+        super.clearAnimMarkOuts();
+
+        this.markBlur     = false;
+        this.markPassive  = false;
+        this.markEnabled  = false;
+        this.markDisabled = false;
+    }
+
+
+
     /**
      * get the state of disability of current control.
      * @returns true indicates the current control is disabled, or false indicates the current control is not disabled (enabled).
@@ -25,9 +70,13 @@ export default class Control extends Element {
      */
     set disabled(disabled : boolean) {
         if (disabled) {
-            this.filter(":not(:disabled)")  .prop("disabled", true)   .removeClass("enabled")  .trigger("disabled");
+            this.filter(":not(:disabled)").prop("disabled", true);
+            this.markEnabled  = false; this.markDisabled = true;
+            this.trigger("disabled");
         } else {
-            this.filter(":disabled")        .prop("disabled", false)  .addClass("enabled")     .trigger("enabled");
+            this.filter(":disabled")      .prop("disabled", false);
+            this.markDisabled = false; this.markEnabled  = true;
+            this.trigger("enabled");
         }
     }
 
