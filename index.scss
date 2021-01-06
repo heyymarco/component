@@ -28,7 +28,6 @@ $var-root           : ":root"                               !default;
 $var-prefix         : "ctrl"                                !default;
 $var-prefix-base    : ""                                    !default;
 $cssvar: make-cssvar($var-prefix, $var-prefix-base);
-$anim-prefix: part-combine($var-prefix, "anim-");
 
 /*base*/$backg              : var(#{base.$cssvar}backg)                     !default;
 /*base*/$backg-gradient     : var(#{base.$cssvar}backg-gradient)            !default;
@@ -67,14 +66,14 @@ $anim-prefix: part-combine($var-prefix, "anim-");
 /*addn*/$filter-disabled    : grayscale(50%) opacity(50%)                   !default;
 
 /*base*/$anim               : var(#{base.$cssvar}anim)                      !default;
-/*base*/$anim-hover         : 150ms ease-out both #{$anim-prefix}hover      !default;
-/*base*/$anim-leave         : 300ms ease-out both #{$anim-prefix}leave      !default;
-/*addn*/$anim-focus         : 150ms ease-out both #{$anim-prefix}focus      !default;
-/*addn*/$anim-blur          : 300ms ease-out both #{$anim-prefix}blur       !default;
-/*addn*/$anim-active        : 150ms ease-out both #{$anim-prefix}active     !default;
-/*addn*/$anim-passive       : 300ms ease-out both #{$anim-prefix}passive    !default;
-/*addn*/$anim-enabled       : 150ms ease-out both #{$anim-prefix}enabled    !default;
-/*addn*/$anim-disabled      : 300ms ease-out both #{$anim-prefix}disabled   !default;
+/*base*/$anim-hover         : 150ms ease-out both #{$cssvar}anim-hover      !default;
+/*base*/$anim-leave         : 300ms ease-out both #{$cssvar}anim-leave      !default;
+/*addn*/$anim-focus         : 150ms ease-out both #{$cssvar}anim-focus      !default;
+/*addn*/$anim-blur          : 300ms ease-out both #{$cssvar}anim-blur       !default;
+/*addn*/$anim-active        : 150ms ease-out both #{$cssvar}anim-active     !default;
+/*addn*/$anim-passive       : 300ms ease-out both #{$cssvar}anim-passive    !default;
+/*addn*/$anim-enabled       : 150ms ease-out both #{$cssvar}anim-enabled    !default;
+/*addn*/$anim-disabled      : 300ms ease-out both #{$cssvar}anim-disabled   !default;
 
 
 
@@ -146,168 +145,6 @@ $anim-prefix: part-combine($var-prefix, "anim-");
             );
     }
 }
-
-
-
-/* begin: animations */
-@keyframes #{$anim-prefix}hover {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            // var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-}
-
-@keyframes #{$anim-prefix}leave {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            // var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-}
-
-
-
-@keyframes #{$anim-prefix}focus {
-    0% {
-        box-shadow:
-            var(#{$cssvar}box-shadow)
-            // var(#{$cssvar}box-shadow-focus-blur),
-            ;
-    }
-
-    100% {
-        box-shadow:
-            var(#{$cssvar}box-shadow)
-            var(#{$cssvar}box-shadow-focus-blur),
-            ;
-    }
-}
-
-@keyframes #{$anim-prefix}blur {
-    0% {
-        box-shadow:
-            var(#{$cssvar}box-shadow)
-            var(#{$cssvar}box-shadow-focus-blur),
-            ;
-    }
-
-    100% {
-        box-shadow:
-            var(#{$cssvar}box-shadow)
-            // var(#{$cssvar}box-shadow-focus-blur),
-            ;
-    }
-}
-
-
-
-@keyframes #{$anim-prefix}active {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            // var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-}
-
-@keyframes #{$anim-prefix}passive {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-disabled-enabled)
-            // var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            ;
-    }
-}
-
-
-
-@keyframes #{$anim-prefix}disabled {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            // var(#{$cssvar}filter-disabled-enabled)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            var(#{$cssvar}filter-disabled-enabled)
-            ;
-    }
-}
-
-@keyframes #{$anim-prefix}enabled {
-    0% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            var(#{$cssvar}filter-disabled-enabled)
-            ;
-    }
-
-    100% {
-        filter:
-            var(#{$cssvar}filter)
-            var(#{$cssvar}filter-active-passive)
-            var(#{$cssvar}filter-hover-leave)
-            // var(#{$cssvar}filter-disabled-enabled)
-            ;
-    }
-}
-/* end: animations */
 
 
 
@@ -407,6 +244,47 @@ $_state-blur : ".blur";
         @include state-leave { #{$cssvar}filter-hover-leave : var(#{$cssvar}filter-hover);
                                #{$cssvar}anim-hover-leave   : var(#{$cssvar}anim-leave);   }
     }
+    @at-root {
+        @keyframes #{$cssvar}anim-hover {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    // var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        }
+        
+        @keyframes #{$cssvar}anim-leave {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    // var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        }
+    }
 
 
 
@@ -417,6 +295,39 @@ $_state-blur : ".blur";
                                #{$cssvar}anim-focus-blur       : var(#{$cssvar}anim-focus);         }
         @include state-blur {  #{$cssvar}box-shadow-focus-blur : var(#{$cssvar}box-shadow-focus);
                                #{$cssvar}anim-focus-blur       : var(#{$cssvar}anim-blur);          }
+    }
+    @at-root {
+        @keyframes #{$cssvar}anim-focus {
+            0% {
+                box-shadow:
+                    var(#{$cssvar}box-shadow)
+                    // var(#{$cssvar}box-shadow-focus-blur),
+                    ;
+            }
+        
+            100% {
+                box-shadow:
+                    var(#{$cssvar}box-shadow)
+                    var(#{$cssvar}box-shadow-focus-blur),
+                    ;
+            }
+        }
+        
+        @keyframes #{$cssvar}anim-blur {
+            0% {
+                box-shadow:
+                    var(#{$cssvar}box-shadow)
+                    var(#{$cssvar}box-shadow-focus-blur),
+                    ;
+            }
+        
+            100% {
+                box-shadow:
+                    var(#{$cssvar}box-shadow)
+                    // var(#{$cssvar}box-shadow-focus-blur),
+                    ;
+            }
+        }
     }
 
 
@@ -442,6 +353,47 @@ $_state-blur : ".blur";
             @include state-no-animation-startup;
         }
     }
+    @at-root {
+        @keyframes #{$cssvar}anim-active {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    // var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        }
+        
+        @keyframes #{$cssvar}anim-passive {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    // var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    ;
+            }
+        }
+    }
 
 
 
@@ -460,6 +412,47 @@ $_state-blur : ".blur";
     @include state-enabled  { @include state-active { // do not animate during disabled => enabled active
         #{$cssvar}filter-disabled-enabled   : brightness(100%);
     }}
+    @at-root {
+        @keyframes #{$cssvar}anim-disabled {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    // var(#{$cssvar}filter-disabled-enabled)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    ;
+            }
+        }
+        
+        @keyframes #{$cssvar}anim-enabled {
+            0% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    var(#{$cssvar}filter-disabled-enabled)
+                    ;
+            }
+        
+            100% {
+                filter:
+                    var(#{$cssvar}filter)
+                    var(#{$cssvar}filter-active-passive)
+                    var(#{$cssvar}filter-hover-leave)
+                    // var(#{$cssvar}filter-disabled-enabled)
+                    ;
+            }
+        }
+    }
 
 
 
