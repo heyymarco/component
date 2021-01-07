@@ -60,6 +60,8 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 /*addn*/$cursor-enabled     : pointer                                       !default;
 /*addn*/$cursor-disabled    : not-allowed                                   !default;
 
+/*base*/$transition         : var(#{base.$cssvar}transition)                !default;
+
 /*base*/$filter             : var(#{base.$cssvar}filter)                    !default;
 /*base*/$filter-hover       : var(#{base.$cssvar}filter-hover)              !default;
 /*addn*/$filter-active      : brightness(65%) contrast(150%)                !default;
@@ -108,6 +110,8 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
     /*addn*/#{$cssvar}cursor-enabled    : $cursor-enabled;
     /*addn*/#{$cssvar}cursor-disabled   : $cursor-disabled;
+
+    /*base*/#{$cssvar}transition        : $transition;
 
     /*base*/#{$cssvar}filter            : $filter;
     /*base*/#{$cssvar}filter-hover      : $filter-hover;
