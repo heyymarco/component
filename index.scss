@@ -3,18 +3,18 @@
 
 
 // development:
-// @use "node_modules/@heymarco/element/index"             as base;
-// @use "node_modules/@heymarco/sass-class-template/index" as *;
-// @use "node_modules/@heymarco/sass-selector/index"       as selector;
-// @use "node_modules/@heymarco/strip-out/index"           as strip-out;
-// @use "node_modules/@heymarco/colors/index"              as color;
+@use "node_modules/@heymarco/element/index"             as base;
+@use "node_modules/@heymarco/sass-class-template/index" as *;
+@use "node_modules/@heymarco/sass-selector/index"       as selector;
+@use "node_modules/@heymarco/strip-out/index"           as strip-out;
+@use "node_modules/@heymarco/colors/index"              as color;
 
 // production:
-@use "../../../node_modules/@heymarco/element/index"             as base;
-@use "../../../node_modules/@heymarco/sass-class-template/index" as *;
-@use "../../../node_modules/@heymarco/sass-selector/index"       as selector;
-@use "../../../node_modules/@heymarco/strip-out/index"           as strip-out;
-@use "../../../node_modules/@heymarco/colors/index"              as color;
+// @use "../../../node_modules/@heymarco/element/index"             as base;
+// @use "../../../node_modules/@heymarco/sass-class-template/index" as *;
+// @use "../../../node_modules/@heymarco/sass-selector/index"       as selector;
+// @use "../../../node_modules/@heymarco/strip-out/index"           as strip-out;
+// @use "../../../node_modules/@heymarco/colors/index"              as color;
 
 
 
@@ -165,30 +165,6 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 @mixin state-not-enabled  { @include base.state-not-enabled  { @content; }}
 
 
-$_state-active: ":active, .active, .actived";
-$_state-passive: ".passive";
-@mixin state-active {
-    @include selector.append(    $_state-active) {
-        @content;
-    }
-}
-@mixin state-not-active {
-    @include selector.append-not($_state-active) {
-        @content;
-    }
-}
-@mixin state-passive {
-    @include state-not-active { @include selector.append($_state-passive) {
-        @content;
-    }}
-}
-@mixin state-not-passive {
-    @include selector.append-not($_state-passive) {
-        @content;
-    }
-}
-
-
 $_state-focus: ":focus";
 $_state-blur : ".blur";
 @mixin state-focus {
@@ -208,6 +184,30 @@ $_state-blur : ".blur";
 }
 @mixin state-not-blur {
     @include selector.append-not($_state-blur) {
+        @content;
+    }
+}
+
+
+$_state-active: ":active, .active, .actived";
+$_state-passive: ".passive";
+@mixin state-active {
+    @include selector.append(    $_state-active) {
+        @content;
+    }
+}
+@mixin state-not-active {
+    @include selector.append-not($_state-active) {
+        @content;
+    }
+}
+@mixin state-passive {
+    @include state-not-active { @include selector.append($_state-passive) {
+        @content;
+    }}
+}
+@mixin state-not-passive {
+    @include selector.append-not($_state-passive) {
         @content;
     }
 }
