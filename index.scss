@@ -3,18 +3,18 @@
 
 
 // development:
-@use "node_modules/@heymarco/element/index"             as base;
-@use "node_modules/@heymarco/sass-class-template/index" as *;
-@use "node_modules/@heymarco/sass-selector/index"       as selector;
-@use "node_modules/@heymarco/strip-out/index"           as strip-out;
-@use "node_modules/@heymarco/colors/index"              as color;
+// @use "node_modules/@heymarco/element/index"             as base;
+// @use "node_modules/@heymarco/sass-class-template/index" as *;
+// @use "node_modules/@heymarco/sass-selector/index"       as selector;
+// @use "node_modules/@heymarco/strip-out/index"           as strip-out;
+// @use "node_modules/@heymarco/colors/index"              as color;
 
 // production:
-// @use "../../../node_modules/@heymarco/element/index"             as base;
-// @use "../../../node_modules/@heymarco/sass-class-template/index" as *;
-// @use "../../../node_modules/@heymarco/sass-selector/index"       as selector;
-// @use "../../../node_modules/@heymarco/strip-out/index"           as strip-out;
-// @use "../../../node_modules/@heymarco/colors/index"              as color;
+@use "../../../node_modules/@heymarco/element/index"             as base;
+@use "../../../node_modules/@heymarco/sass-class-template/index" as *;
+@use "../../../node_modules/@heymarco/sass-selector/index"       as selector;
+@use "../../../node_modules/@heymarco/strip-out/index"           as strip-out;
+@use "../../../node_modules/@heymarco/colors/index"              as color;
 
 
 
