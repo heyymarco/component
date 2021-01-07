@@ -67,7 +67,8 @@ export default class Control extends Element {
      * @returns true indicates the current control is activated, or false indicates the current control is deactivated.
      */
     get active() : boolean {
-        return this.is(":active, :checked, .active, .actived");
+        // return this.is(":active, :checked, .active, .actived"); // pseuso :active is not supported yet
+        return this.is(":checked, .active, .actived");
     }
 
     /**
@@ -76,13 +77,15 @@ export default class Control extends Element {
      */
     set active(active : boolean) {
         if (active) {
-            let items = this.filter(":not(:active):not(:checked):not(.active):not(.actived)");
-            items.markPassive = false; items.markActive = true;
-            items.trigger("change");
+            // let ctrl = new Control(this.filter(":not(:active):not(:checked):not(.active):not(.actived)")); // pseuso :active is not supported yet
+            let ctrl = new Control(this.filter(":not(:checked):not(.active):not(.actived)"));
+            ctrl.markPassive = false; ctrl.markActive = true;
+            ctrl.trigger("change");
         } else {
-            let items = this.filter(":active, :checked, .active, .actived");
-            items.markActive = false; items.markPassive  = true;
-            items.trigger("change");
+            // let ctrl = new Control(this.filter(":active, :checked, .active, .actived")); // pseuso :active is not supported yet
+            let ctrl = new Control(this.filter(":checked, .active, .actived"));
+            ctrl.markActive = false; ctrl.markPassive  = true;
+            ctrl.trigger("change");
         }
     }
 
@@ -102,16 +105,16 @@ export default class Control extends Element {
      */
     set disabled(disabled : boolean) {
         if (disabled) {
-            let items = this.filter(":not(:disabled)");
-            items.prop("disabled", true);
-            items.markEnabled  = false; items.markDisabled = true;
-            items.trigger("disabled");
+            let ctrl = new Control(this.filter(":not(:disabled)"));
+            ctrl.prop("disabled", true);
+            ctrl.markEnabled  = false; ctrl.markDisabled = true;
+            ctrl.trigger("disabled");
         } else {
-            let items = this.filter(":disabled");
-            items.prop("disabled", false);
-            items.markDisabled = false; items.markEnabled  = true;
-            if (items.is(".actived")) items.removeClass("actived").addClass("active");
-            items.trigger("enabled");
+            let ctrl = new Control(this.filter(":disabled"));
+            ctrl.prop("disabled", false);
+            ctrl.markDisabled = false; ctrl.markEnabled  = true;
+            if (ctrl.is(".actived")) ctrl.removeClass("actived").addClass("active");
+            ctrl.trigger("enabled");
         }
     }
 
