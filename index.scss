@@ -231,15 +231,26 @@ $_state-passive: ".passive";
 
 
 
+    /* begin: variant-size: font-size, padding, border-radius */
+    @each $size in (sm, lg) { @include variant-of($alias, $size) {
+        @extend #{base.$alias}_#{$size};
+    }}
+    /* end: variant-size: font-size, padding, border-radius */
+
+
+
     /* begin: variant-theme: box-shadow-focus */
-    @each $theme-name, $theme-color in color.$themes { @include selector.append("." + $theme-name) {
+    @each $theme-name, $theme-color in color.$themes { @include variant-of($alias, $theme-name) {
+        @extend #{base.$alias}_#{$theme-name};
+
+
         #{$cssvar}box-shadow-focus: var(#{$cssvar}box-shadow-focus-#{$theme-name});
     }}
     /* end: variant-theme: box-shadow-focus */
     
     
     
-    /* begin: variant-state: animation */
+    /* begin: states: animation */
     #{$cssvar}filter-hover-leave    : brightness(100%);
     #{$cssvar}anim-hover-leave      : none;
     @include state-not-disabled {
@@ -466,7 +477,7 @@ $_state-passive: ".passive";
         var(#{$cssvar}anim-hover-leave),        // first: move cursor toward control
         var(#{$cssvar}anim-focus-blur),         // then : control got focus
         var(#{$cssvar}anim-active-passive);     // then : press control
-    /* end: variant-state: animation */
+    /* end: states: animation */
 }
 @mixin style($cssvar: $cssvar) {
     @include _style(true, $cssvar);
